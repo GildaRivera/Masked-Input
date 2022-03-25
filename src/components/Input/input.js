@@ -6,7 +6,7 @@ export default function Input(props) {
   useEffect(() => {}, [valid]);
   const handleChange = (e) => {
     if (props.regex) {
-       console.log(e.target)
+   
       var regex = new RegExp(props.regex);
       if (regex.test(e.target.value)) {
         setValid(true);
