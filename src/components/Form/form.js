@@ -6,6 +6,7 @@ export default function Form(props) {
   const [form, setForm] = useState({});
   const [valid, setValid] = useState(false);
   const emergenciaCheck = useRef()
+  const f1 = useRef()
   const [showEmergencia, setShowEmergencia] = useState(false)
   const handleForm = (value, valid, name,required) => {
     setForm((prev) => {
@@ -33,16 +34,18 @@ export default function Form(props) {
     if(flag===false){
 
         Notify.failure("Form is not valid")
+        
       
     }else{ Notify.success('Form is valid');}
     setValid(flag);
 
   };
 useEffect(()=>{
-
     if(valid){
-        console.log("sii", valid)
+       window.localStorage.setItem(JSON.stringify(form["Email"].value), JSON.stringify(form))
         Notify.success('Form is valid');
+        setValid(false)
+        f1.current.reset()
     }
    
   
@@ -60,7 +63,7 @@ const handleCheck = (e)=>{
   return (
     <>
       <div className="w-full  relative form__container">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" ref={f1}>
           <h2 className="indent-8 text-lg font-bold text-[#000000]">
             Información general
           </h2>
@@ -142,7 +145,7 @@ const handleCheck = (e)=>{
               handleForm={handleForm}
               type="select"
               required={true}
-              options={["1","2"]}
+              options={["501","502","503","504","505","506", "507"]}
             />
             <Input
               id="numeroTel"
@@ -327,7 +330,7 @@ const handleCheck = (e)=>{
               handleForm={handleForm}
               type="select"
               required={false}
-              options={["1","2"]}
+            options={["501","502","503","504","505","506", "507"]}
             />
             <div id="numeroTel1">
             <Input

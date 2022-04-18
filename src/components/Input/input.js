@@ -53,8 +53,9 @@ export default function Input(props) {
           onChange={handleChange}
           required={props.required}
           value={undefined}
+         
         >
-          
+          <option value="" selected disabled hidden>Seleccionar...</option>
           {props.options.map(element=>  <option value={element} key={element}>{element}</option>)}
         </select>
       ) : (
