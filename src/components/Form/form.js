@@ -14,11 +14,15 @@ export default function Form(props) {
     });
   };
   const handleSubmit = () => {
-    console.log(form)
     let flag = true;
     for (let i in form) {
       if(form[i].required ===true){
-        if (!form[i].valid || form[i].value==undefined) {
+        if (!form[i].valid || form[i].value===undefined) {
+          flag = false;
+          break;
+        }
+      }else{
+        if (!form[i].valid) {
           flag = false;
           break;
         }
@@ -236,7 +240,7 @@ const handleCheck = (e)=>{
 
 
           <h2 className="indent-8 text-lg font-bold text-[#000000]">
-            Datos de contacto de emergencia<input className="form-check-input" type="checkbox" onChange={handleCheck} ref={emergenciaCheck} id="flexCheckDefault" />
+            Datos de contacto de emergencia<input className="form-check-input" id="check" type="checkbox" onChange={handleCheck} ref={emergenciaCheck} id="flexCheckDefault" />
           </h2>
           {showEmergencia ? 
           <div>
@@ -350,12 +354,14 @@ const handleCheck = (e)=>{
 
 
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between" style={{justifyContent:"flex-end"}}>
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="button"
               onClick={handleSubmit}
-             
+             style={{    position: "relative",
+              right: "9%",    
+              marginTop:"8px"}}
             >
               Guardar
             </button>

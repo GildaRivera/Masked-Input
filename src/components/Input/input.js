@@ -4,7 +4,7 @@ export default function Input(props) {
   const [valid, setValid] = useState(true);
   const [value, setValue] = useState();
   const [required, setRequired] = useState(false)
-  const [errorR, setErrorR]=useState()
+
   const name = props.name;
   useEffect(() => {}, [valid]);
   const handleChange = (e) => {
